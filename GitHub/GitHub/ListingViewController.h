@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ListingViewController : UITableViewController<UITableViewDelegate,UITableViewDataSource>
+@interface ListingViewController : UITableViewController<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 
+
+@property NSMutableArray * bookMarkedCommit;
 @end

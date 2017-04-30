@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "251F5CD0E52AB078184F8ED814D5849A8C52C3F9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "251F5CD0E52AB078184F8ED814D5849A8C52C3F9" : 9223372036854775807,
+    "2977B31ECF9F9E2558763F9AF26B045D97248EF7" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "98421CA9-FFB6-4FE2-82AF-1E8CF8B426E6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "251F5CD0E52AB078184F8ED814D5849A8C52C3F9" : "GitRepo_GitHub\/",
+    "2977B31ECF9F9E2558763F9AF26B045D97248EF7" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "GitHub",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "GitHub\/GitHub.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Anamika0601\/GitHub-Commit-List.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "251F5CD0E52AB078184F8ED814D5849A8C52C3F9"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Anamika0601\/Background-Location-Tracking",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2977B31ECF9F9E2558763F9AF26B045D97248EF7"
+    }
+  ]
+}

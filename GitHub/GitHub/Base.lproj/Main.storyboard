@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tw8-Yr-Ynd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tw8-Yr-Ynd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="81"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vAq-kp-LEO" id="dhE-8N-YOl">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Bo-qn-ewA">
@@ -79,6 +79,13 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TOG-2r-yS2">
+                                            <rect key="frame" x="309" y="0.0" width="51" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <connections>
+                                                <action selector="bookmarkSwitchClicked:" destination="vAq-kp-LEO" eventType="valueChanged" id="Jx3-K5-S0T"/>
+                                            </connections>
+                                        </switch>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Bwl-3m-IUf" firstAttribute="leading" secondItem="9Hu-tk-6vC" secondAttribute="leading" id="5SH-xK-FRY"/>
@@ -96,6 +103,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="bookMarkSwitch" destination="TOG-2r-yS2" id="d6P-go-HDN"/>
                                     <outlet property="commitIdLabel" destination="OW0-7i-XEf" id="k6E-VY-2FY"/>
                                     <outlet property="messageLabel" destination="AYO-Tx-Utl" id="kZp-gJ-T5s"/>
                                     <outlet property="userImage" destination="0Bo-qn-ewA" id="ubL-Gy-xDm"/>
@@ -108,7 +116,22 @@
                             <outlet property="delegate" destination="KOH-uZ-c1g" id="Ah6-AE-QjW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="GitHub" id="e1N-UR-bJc"/>
+                    <navigationItem key="navigationItem" title="GitHub" id="e1N-UR-bJc">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="bookmarks" id="lae-Wm-5i6">
+                            <connections>
+                                <action selector="didBookMarkClicked:" destination="KOH-uZ-c1g" id="dYN-0c-lMz"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="AvJ-5Q-5Nj">
+                            <connections>
+                                <action selector="didSearchClicked:" destination="KOH-uZ-c1g" id="ULj-PW-n3K"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bookmarkBtn" destination="lae-Wm-5i6" id="LbD-nW-WWy"/>
+                        <outlet property="searchBtn" destination="AvJ-5Q-5Nj" id="M9m-fm-Kdo"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FeS-aH-Y7Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -212,6 +212,7 @@
 				TargetAttributes = {
 					A327A4151EB369570025B96F = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 6MY2496Q2W;
 						ProvisioningStyle = Automatic;
 					};
 					A327A42E1EB369570025B96F = {
@@ -221,6 +222,7 @@
 					};
 					A327A4391EB369570025B96F = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 6MY2496Q2W;
 						ProvisioningStyle = Automatic;
 						TestTargetID = A327A4151EB369570025B96F;
 					};
@@ -430,7 +432,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6MY2496Q2W;
 				INFOPLIST_FILE = GitHub/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Anamika.GitHub;
@@ -442,7 +444,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6MY2496Q2W;
 				INFOPLIST_FILE = GitHub/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Anamika.GitHub;
@@ -479,7 +481,7 @@
 		A327A44A1EB369570025B96F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6MY2496Q2W;
 				INFOPLIST_FILE = GitHubUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Anamika.GitHubUITests;
@@ -491,7 +493,7 @@
 		A327A44B1EB369570025B96F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6MY2496Q2W;
 				INFOPLIST_FILE = GitHubUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Anamika.GitHubUITests;
@@ -519,6 +521,7 @@
 				A327A4451EB369570025B96F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A327A4461EB369570025B96F /* Build configuration list for PBXNativeTarget "GitHubTests" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +530,7 @@
 				A327A4481EB369570025B96F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A327A4491EB369570025B96F /* Build configuration list for PBXNativeTarget "GitHubUITests" */ = {
 			isa = XCConfigurationList;
@@ -535,6 +539,7 @@
 				A327A44B1EB369570025B96F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -14,6 +14,7 @@
     __weak IBOutlet UIImageView *userImage;
     __weak IBOutlet UILabel *messageLabel;
     __weak IBOutlet UILabel *commitIdLabel;
+    __weak IBOutlet UISwitch *bookMarkSwitch;
 }
 
 - (void)awakeFromNib {
@@ -59,4 +60,11 @@
     userNameLabel.minimumScaleFactor = 8 / userNameLabel.font.pointSize;
     userNameLabel.numberOfLines = 1;
 }
+- (IBAction)bookmarkSwitchClicked:(id)sender {
+    //add to bookMarked array
+    NSString * bookmarkedCommitId = commitIdLabel.text;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DataUpdated"
+                                                        object:bookmarkedCommitId];
+}
+
 @end

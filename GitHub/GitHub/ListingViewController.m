@@ -11,6 +11,7 @@
 
 @interface ListingViewController ()
 
+
 @end
 
 @implementation ListingViewController{
@@ -22,7 +23,16 @@
     
     NSMutableArray *gitHubDataArray;
     UIActivityIndicatorView *activityView;
+    
+    __weak IBOutlet UIBarButtonItem *bookmarkBtn;
+    
+    __weak IBOutlet UIBarButtonItem *searchBtn;
+    
+    NSMutableArray* searchedArray;
+    BOOL isSearched;
+    BOOL isBookMarkClicked;
 }
+@synthesize bookMarkedCommit;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,7 +43,7 @@
     activityView.center=self.view.center;
     [activityView startAnimating];
     [self.view addSubview:activityView];
-    
+    isSearched = NO;
     dispatch_queue_t q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0ul);
     dispatch_async(q, ^{
         [self getGitHubCommits];
@@ -41,6 +51,11 @@
             [self.tableView reloadData];
         });
     });
+    bookMarkedCommit = [[NSMutableArray alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleUpdatedData:)
+                                                 name:@"DataUpdated"
+                                               object:nil];
     
 }
 
@@ -56,16 +71,35 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return gitHubDataArray.count;
+    if(isSearched){
+        return searchedArray.count;
+    }else if(isBookMarkClicked){
+        return self.bookMarkedCommit.count;
+    }else{
+        return gitHubDataArray.count;
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CommitTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    [cell setMessage:[[[gitHubDataArray objectAtIndex:indexPath.row] objectForKey:@"dict"] objectForKey:@"message"]];
-    [cell setCommitId:[[[gitHubDataArray objectAtIndex:indexPath.row] objectForKey:@"dict"] objectForKey:@"commitId"]];
-    [cell setUserImageView:[[[gitHubDataArray objectAtIndex:indexPath.row] objectForKey:@"dict"] objectForKey:@"imageUrl"]];
-    [cell setUserName:[[[gitHubDataArray objectAtIndex:indexPath.row] objectForKey:@"dict"] objectForKey:@"name"]];
+    if(isSearched){
+        [cell setMessage:[[[searchedArray objectAtIndex:indexPath.row] objectForKey:@"dict"] objectForKey:@"message"]];
+        [cell setCommitId:[[[searchedArray objectAtIndex:indexPath.row] objectForKey:@"dict"] objectForKey:@"commitId"]];
+//        [cell setUserImageView:[[[searchedArray objectAtIndex:indexPath.row] objectForKey:@"dict"] objectForKey:@"imageUrl"]];
+        [cell setUserName:[[[searchedArray objectAtIndex:indexPath.row] objectForKey:@"dict"] objectForKey:@"name"]];
+    }else if (isBookMarkClicked){
+        [cell setMessage:[[[self.bookMarkedCommit objectAtIndex:indexPath.row] objectForKey:@"dict"] objectForKey:@"message"]];
+        [cell setCommitId:[[[self.bookMarkedCommit objectAtIndex:indexPath.row] objectForKey:@"dict"] objectForKey:@"commitId"]];
+        //        [cell setUserImageView:[[[searchedArray objectAtIndex:indexPath.row] objectForKey:@"dict"] objectForKey:@"imageUrl"]];
+        [cell setUserName:[[[self.bookMarkedCommit objectAtIndex:indexPath.row] objectForKey:@"dict"] objectForKey:@"name"]];
+    }else{
+        [cell setMessage:[[[gitHubDataArray objectAtIndex:indexPath.row] objectForKey:@"dict"] objectForKey:@"message"]];
+        [cell setCommitId:[[[gitHubDataArray objectAtIndex:indexPath.row] objectForKey:@"dict"] objectForKey:@"commitId"]];
+        [cell setUserImageView:[[[gitHubDataArray objectAtIndex:indexPath.row] objectForKey:@"dict"] objectForKey:@"imageUrl"]];
+        [cell setUserName:[[[gitHubDataArray objectAtIndex:indexPath.row] objectForKey:@"dict"] objectForKey:@"name"]];
+    }
+    
     // Configure the cell...
     
     return cell;
@@ -108,7 +142,55 @@
     NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:@"userId" ascending:YES];
     array = [array sortedArrayUsingDescriptors:@[descriptor]];
     gitHubDataArray = [array copy];
+    NSLog(@"%@",gitHubDataArray);
 }
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    if(![searchBar.text isEqualToString:@""]){
+        searchBar.hidden = YES;
+        [self searchFor:searchBar.text];
+    }
+}
+-(void)searchFor:(NSString*)string{
+    searchedArray = [[NSMutableArray alloc] init];
+    isSearched = YES;
+    for (int i =0 ; i< gitHubDataArray.count; i++) {
+        if([[[[gitHubDataArray objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"name"] isEqualToString:string]){
+            [searchedArray addObject:[gitHubDataArray objectAtIndex:i]];
+        }
+    }
+    [self.tableView reloadData];
+
+}
+- (IBAction)didSearchClicked:(id)sender {
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(20, 0, 300, 50)];
+    searchBar.delegate = self;
+    [self.view addSubview:searchBar];
+//    searchedArray = [[NSMutableArray alloc] init];
+//    isSearched = YES;
+//    for (int i =0 ; i< gitHubDataArray.count; i++) {
+//        if([[[[gitHubDataArray objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"name"] isEqualToString:@"Ryuta Kamizono"]){
+//            [searchedArray addObject:[gitHubDataArray objectAtIndex:i]];
+//        }
+//    }
+//    [self.tableView reloadData];
+    
+}
+- (IBAction)didBookMarkClicked:(id)sender {
+    isBookMarkClicked = YES;
+    [self.tableView reloadData];
+}
+
+-(void)handleUpdatedData:(NSNotification *)notification {
+    NSLog(@"recieved");
+    for (int i =0 ; i< gitHubDataArray.count; i++) {
+        if([[[[gitHubDataArray objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"commitId"] isEqualToString:notification.object]){
+                [self.bookMarkedCommit addObject:[gitHubDataArray objectAtIndex:i]];
+        }
+    }
+    
+}
+
 
 /*
 // Override to support conditional editing of the table view.
